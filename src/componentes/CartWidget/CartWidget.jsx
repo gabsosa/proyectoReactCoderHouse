@@ -3,9 +3,8 @@ import './CartWidget.css'
 
 const CartWidget = () => {
     return(
-        <div className="widgetContainer">
+        <div className="containerCart">
             <BsCart4 className="cart-icon" />
-            0
         </div>
     )
 }

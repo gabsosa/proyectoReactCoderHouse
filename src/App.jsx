@@ -1,14 +1,15 @@
-import { useEffect, useState } from 'react'
-import './App.css'
-import CuboMagico from './componentes/CuboMagico/CuboMagico'
+import "./App.css";
+import NavBar from "./componentes/NavBar/NavBar";
+import ItemListContainer from "./componentes/ItemListContainer/ItemListContainer";
+import { ChakraProvider } from "@chakra-ui/react";
 
 function App() {
-
   return (
-    <>
-      <CuboMagico />
-    </>
-  )
+    <ChakraProvider>
+      <NavBar />
+      <ItemListContainer title="Productos" />
+    </ChakraProvider>
+  );
 }
 
-export default App
+export default App;

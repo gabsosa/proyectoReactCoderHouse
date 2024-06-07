@@ -1,10 +1,10 @@
-import './ItemListContainer.css'
+import { Flex } from '@chakra-ui/react'
 
-const ItemListContainer = ({ greeting }) => {
+const ItemListContainer = ({ title }) => {
     return(
-        <div className="itemListContainer">
-            <h1>{ greeting }</h1>
-        </div>
+        <Flex justify='center' align='center' height='400px' width='100%'>
+            <h1 style={{fontSize: '25px'}}>{ title }</h1>
+        </Flex>
     )
 }
 
