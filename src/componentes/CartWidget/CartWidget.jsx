@@ -5,6 +5,7 @@ const CartWidget = () => {
     return(
         <div className="containerCart">
             <BsCart4 className="cart-icon" />
+            <p>0</p>
         </div>
     )
 }

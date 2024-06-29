@@ -11,10 +11,13 @@ import {
   MenuDivider,
   Button,
   Flex,
+  Show
 } from "@chakra-ui/react";
 import { FaAngleDown } from "react-icons/fa";
+import { Link } from 'react-router-dom'
 
-const NavBar = () => {
+const NavBar = ({}) => {
+
   return (
     <>
       <Flex
@@ -23,32 +26,47 @@ const NavBar = () => {
         width={"100%"}
         justify={"space-between"}
       >
-        <h3 className="logo">ClothingStore</h3>
-        <div className="menuContainer">
+        <h3 className="logo"><Link to={`/`}>ClothingStore</Link></h3>
+        <Show breakpoint="(min-width: 550px)" className="menuContainer">
           <Menu>
             <MenuButton
-              bg='none'
-              color='white'
-              _hover={{
-                bg: 'none'
-              }}
-              _focus={{
-                bg: 'none'
-              }}
+              color="white"
+              bg="rgb(49, 42, 42)"
+              _active={{ backgroundColor: "none" }}
+              _hover={{ backgroundColor: "none", filter: "brightness(1.5)" }}
               as={Button}
               rightIcon={<FaAngleDown />}
             >
-              Articulos
+              Productos
             </MenuButton>
-            <MenuList bg='rgb(49, 42, 42)'>
-              <MenuItem _hover={{bg:'red'}} bg='rgb(49, 42, 42)' color='white'>Remeras</MenuItem>
-              <MenuItem _hover={{bg:'red'}} bg='rgb(49, 42, 42)' color='white'>Pantalones</MenuItem>
-              <MenuItem _hover={{bg:'red'}} bg='rgb(49, 42, 42)' color='white'>Vestidos</MenuItem>
-              <MenuItem _hover={{bg:'red'}} bg='rgb(49, 42, 42)' color='white'>Zapatillas</MenuItem>
-              <MenuItem _hover={{bg:'red'}} bg='rgb(49, 42, 42)' color='white'>Camisas</MenuItem>
+            <MenuList color="white" bg="rgb(49, 42, 42)">
+              <MenuItem
+                _hover={{ filter: "brightness(1.5)" }}
+                bg="rgb(49, 42, 42)"
+              >
+                <Link to="categorias/Remera">Remera</Link>
+              </MenuItem>
+              <MenuItem
+                _hover={{ filter: "brightness(1.5)" }}
+                bg="rgb(49, 42, 42)"
+              >
+                <Link to="/categorias/Pantalon">Pantalon</Link>
+              </MenuItem>
+              <MenuItem
+                _hover={{ filter: "brightness(1.5)" }}
+                bg="rgb(49, 42, 42)"
+              >
+                <Link to="/categorias/Campera">Campera</Link>
+              </MenuItem>
+              <MenuItem
+                _hover={{ filter: "brightness(1.5)" }}
+                bg="rgb(49, 42, 42)"
+              >
+                <Link to="/categorias/Zapatilla">Zapatilla</Link>
+              </MenuItem>
             </MenuList>
           </Menu>
-        </div>
+        </Show>
         <CartWidget />
       </Flex>
     </>
