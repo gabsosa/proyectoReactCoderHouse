@@ -1,6 +1,5 @@
-let productos = [
+export let productos = [
     {
-        id: 1,
         nombre: "Zapatilla Nike",
         precio: 100,
         stock: 10,
@@ -9,7 +8,6 @@ let productos = [
         img: 'https://media2.solodeportes.com.ar/media/catalog/product/cache/a0bd03cb38235cf9ca6c3c8cbea4afc1/z/a/zapatillas-nike-air-max-systm-negra-510010dm9537001-1.jpg'
     },
     {
-        id: 2,
         nombre: 'Remera Hombre',
         precio: 500,
         stock: 7,
@@ -18,7 +16,6 @@ let productos = [
         img: 'https://http2.mlstatic.com/D_NQ_NP_649628-MLA50912086610_072022-O.webp'
    },
    {
-        id: 3,
         nombre: 'Pantalon',
         precio: 300,
         stock: 15,
@@ -27,7 +24,6 @@ let productos = [
         img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSsM78ZtheaIiZWGT9dJm7tP2xDYZ6SRIyzuA&s'
    },
    {
-        id: 4,
         nombre: 'Campera',
         precio: 800,
         stock: 5,
@@ -36,7 +32,6 @@ let productos = [
         img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-xdRd9uQy5mOZ6zol7KSf5OWvfZao1jU9sQ&s'
    },
    {
-        id: 5,
         nombre: "Zapatilla Nike",
         precio: 100,
         stock: 10,
@@ -45,7 +40,6 @@ let productos = [
         img: 'https://media2.solodeportes.com.ar/media/catalog/product/cache/a0bd03cb38235cf9ca6c3c8cbea4afc1/z/a/zapatillas-nike-air-max-systm-negra-510010dm9537001-1.jpg'
     },
     {
-        id: 6,
         nombre: 'Remera Hombre',
         precio: 500,
         stock: 7,
@@ -54,7 +48,6 @@ let productos = [
         img: 'https://http2.mlstatic.com/D_NQ_NP_649628-MLA50912086610_072022-O.webp'
     },
     {
-        id: 7,
         nombre: 'Pantalon',
         precio: 300,
         stock: 15,
@@ -63,7 +56,6 @@ let productos = [
         img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSsM78ZtheaIiZWGT9dJm7tP2xDYZ6SRIyzuA&s'
     },
     {
-        id: 8,
         nombre: 'Campera',
         precio: 800,
         stock: 5,

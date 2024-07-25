@@ -1,6 +1,5 @@
 import { Button, VStack, Image, Flex } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
-import "./Item.css";
 
 const Item = ({ nombre, img, precio, id }) => {
   return (

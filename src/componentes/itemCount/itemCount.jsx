@@ -1,11 +1,7 @@
-import { useState } from "react";
 import { Button, Flex, Text } from "@chakra-ui/react";
+import { Link } from 'react-router-dom';
 
-const ItemCount = ({ initialValue, stock }) => {
-  const [count, setCount] = useState(initialValue);
-
-  console.log(initialValue);
-  console.log(stock);
+const ItemCount = ({ initialValue, onAdd, stock, count, setCount }) => {
 
   const incrementar = () => {
     count < stock && setCount(count + 1);
@@ -17,18 +13,34 @@ const ItemCount = ({ initialValue, stock }) => {
 
   return (
     <div className="container">
-      <Flex borderRadius='5px' color='white' margin='5px 0' width='100%' justify='center' bg="rgb(49, 42, 42)">
-        <Button fontSize='1rem' color='white' bg="rgb(49, 42, 42)" height="30px" m='0 5px' onClick={incrementar} >
-          +
-        </Button>
-        <Text width='30px' textAlign='center'>{count}</Text>
-        <Button fontSize='1rem' color='white' bg="rgb(49, 42, 42)" height="30px" m='0 5px' onClick={decrementar}>
-          -
-        </Button>
-      </Flex>
-      <Button color='white' bg="rgb(49, 42, 42)" height="30px">
-        Agregar al carrito
-      </Button>
+      {
+        stock === 0 ? (
+          <Flex direction='column' width='100%'>
+            <Text textAlign='center' mb='0.5rem' color="red.500">Sin stock</Text>
+            <Link to='/'>
+              <Button>
+                Regresar a la tienda
+              </Button>
+            </Link>
+          </Flex>
+        ) : (
+          <>
+            <Flex borderRadius='5px' mt='15px' width='100%' justify='center' bg='var(--chakra-colors-gray-100)' >
+              <Button fontSize='1rem' width='calc(50% - 15px)' height="30px" onClick={incrementar} >
+                +
+              </Button>
+              <Text width='30px' textAlign='center'>{count}</Text>
+              <Button fontSize='1rem' width='calc(50% - 15px)' height="30px" onClick={decrementar}>
+                -
+              </Button>
+            </Flex>
+            <Button onClick={onAdd} height="30px" width='100%' mt='15px'>
+              Agregar al carrito
+            </Button>
+          </>
+        )
+      } 
+      
     </div>
   );
 };

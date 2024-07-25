@@ -1,32 +1,36 @@
-import {
-  Flex,
-  Show,
-  Menu,
-  MenuButton,
-  MenuList,
-  MenuItem,
-  Button,
-  Spinner
-} from "@chakra-ui/react";
-import { FaAngleDown } from "react-icons/fa";
+import { Flex, Spinner } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
-import { getProducts, getProductsByCategory } from "../../data/asyncMock";
 import ItemList from "../ItemList/ItemList";
-import "./ItemListContainer.css";
-import { useParams, Link } from 'react-router-dom'
+import { useParams } from "react-router-dom";
+import { db } from "../../config/firebase";
+import { collection, getDocs, query, where } from "firebase/firestore";
 
 const ItemListContainer = ({ title }) => {
   const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(true)
-  const { categoriaId } = useParams() 
+  const [loading, setLoading] = useState(true);
+  const { categoriaId } = useParams();
 
   useEffect(() => {
-    setLoading(true)
-    const dataProducts = categoriaId ? getProductsByCategory( categoriaId ) : getProducts();
-    dataProducts
-      .then((data) => setProducts(data))
-      .catch((error) => console.log(error))
-      .finally(() => setLoading(false))
+    setLoading(true);
+
+    const getData = async () => {
+      const coleccion = collection(db, "productos");
+      const queryRef = !categoriaId
+        ? coleccion
+        : query(coleccion, where("categoria", "==", categoriaId));
+      const response = await getDocs(queryRef);
+      const products = response.docs.map((doc) => {
+        const newItem = {
+          ...doc.data(),
+          id: doc.id,
+        };
+        return newItem;
+      });
+      setProducts(products);
+      setLoading(false);
+    };
+
+    getData();
   }, [categoriaId]);
 
   return (
@@ -37,17 +41,24 @@ const ItemListContainer = ({ title }) => {
       height="auto"
       width="100%"
     >
-      <div className="titleContainer">
+      <Flex
+        align="center"
+        justify="center"
+        fontWeight={500}
+        height="60px"
+        width="100%"
+        fontSize="25px"
+        boxSizing="border-box"
+      >
         <h1>{title}</h1>
-      </div>
-      {
-        loading ? 
-        <Flex width='100%' height='400px' align='center' justify='center'>
+      </Flex>
+      {loading ? (
+        <Flex width="100%" height="400px" align="center" justify="center">
           <Spinner />
         </Flex>
-        :
+      ) : (
         <ItemList productos={products} />
-      }
+      )}
     </Flex>
   );
 };

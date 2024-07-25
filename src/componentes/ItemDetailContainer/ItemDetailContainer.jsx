@@ -1,21 +1,29 @@
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
-import { getProductsById } from "../../data/asyncMock"
 import { Spinner, Flex } from '@chakra-ui/react'
 import ItemDetail from "../ItemDetail/ItemDetail"
+import { db } from "../../config/firebase"
+import { doc, getDoc } from "firebase/firestore"
 
 const ItemDetailContainer = () => {
     const [product, setProduct] = useState({})
     const [loading, setLoading] = useState(true)
-    const {productId} = useParams()
+    const { productId } = useParams()
 
     useEffect(() => {
         setLoading(true)
 
-        getProductsById(productId)
-        .then(prod => setProduct(prod))
-        .catch((error) => console.log(error))
-        .finally(() => setLoading(false))
+        const getData = async () => {
+            const queryRef = doc(db, "productos", productId)
+            const response = await getDoc(queryRef)
+            const newItem = {
+                ...response.data(),
+                id: response.id
+            }
+            setProduct(newItem)
+            setLoading(false)
+        }
+        getData()
     }, [])
 
     return (
