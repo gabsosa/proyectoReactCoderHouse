@@ -30,20 +30,20 @@ const ItemDetail = ({
   const [count, setCount] = useState(1); // Estado de la cantidad del producto
   const { addItem } = useContext(Context); // Contexto
   const [talle, setTalle] = useState("");
-  const [products, setProducts] = useState([])
+    const [products, setProducts] = useState([])
 
-  // Agrega el producto y su cantidad al carrito
-  const onAdd = (quantity) => {
-    addItem(
-      {
-        id,
-        nombre,
-        precio,
-        talle
-      },
-      quantity
-    );
-    setQuantity(quantity);
+    // Agrega el producto y su cantidad al carrito
+    const onAdd = (quantity) => {
+      addItem(
+        {
+          id,
+          nombre,
+          precio,
+          talle
+        },
+        quantity
+      );
+      setQuantity(quantity);
     console.log("Agregado al carrito");
   };
 
