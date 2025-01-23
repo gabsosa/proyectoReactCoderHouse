@@ -36,9 +36,10 @@ const ItemListContainer = ({ title }) => {
   return (
     <Flex
       direction="column"
-      justify="center"
+      justify="start"
       align="center"
       height="auto"
+      minHeight='calc(100vh - 40px)'
       width="100%"
     >
       <Flex
@@ -53,7 +54,7 @@ const ItemListContainer = ({ title }) => {
         <h1>{title}</h1>
       </Flex>
       {loading ? (
-        <Flex width="100%" height="400px" align="center" justify="center">
+        <Flex width="100%" height="calc(100vh - 100px)" align="center" justify="center">
           <Spinner />
         </Flex>
       ) : (

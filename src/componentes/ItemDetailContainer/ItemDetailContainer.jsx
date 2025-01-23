@@ -4,6 +4,7 @@ import { Spinner, Flex } from '@chakra-ui/react'
 import ItemDetail from "../ItemDetail/ItemDetail"
 import { db } from "../../config/firebase"
 import { doc, getDoc } from "firebase/firestore"
+import { Box } from '@chakra-ui/react'
 
 const ItemDetailContainer = () => {
     const [product, setProduct] = useState({})
@@ -27,7 +28,7 @@ const ItemDetailContainer = () => {
     }, [])
 
     return (
-        <div>
+        <Box minHeight='calc(100vh - 40px)'>
             {
                 loading ? 
                 <Flex width='100%' height='400px' align='center' justify='center'>
@@ -36,7 +37,7 @@ const ItemDetailContainer = () => {
                 : 
                 <ItemDetail {...product}/>
             }
-        </div>
+        </Box>
     )
 }
 

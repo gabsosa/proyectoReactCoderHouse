@@ -30,23 +30,22 @@ const ItemDetail = ({
       width="100%"
       bg="white"
       p="10px"
-      flexDirection='column'
+      flexDirection={{base: 'column', md: 'row'}}
     >
-      <Flex width='100%' height='200px' align="center" justify="center">
+      <Flex width={{base: '100%', md: '40%'}} height={{base: '200px', sm: '350px', md: 'calc(100vh - 40px)'}} align="center" justify="center">
         <Image
-          height={categoria === "Zapatilla" ? "60%" : "80%"}
-          widht={categoria === "Zapatilla" ? "20%" : "60%"}
+          boxSize={{base: '100px', sm: '50%'}}
           src={img}
           alt={nombre}
         ></Image>
       </Flex>
       <Flex
-        width="100%"
+        width={{base: "100%", md: '60%'}}
         borderRadius="5px"
         flexDirection="column"
         p="10px"
       >
-        <Flex borderRadius="5px" width="100%" flexDirection='column'>
+        <Flex borderRadius="5px" width="100%" flexDirection={{base: 'column', sm: 'row'}}>
           <ProductBuyer nombre={nombre} precio={precio} stock={stock} />
           <ProductDetail detalles={detalles} />
         </Flex>
@@ -89,7 +88,7 @@ const ProductBuyer = ({ nombre, precio, stock }) => {
       borderRadius="5px"
       flexDirection="column"
       p="10px"
-      width="100%"
+      width={{base: "100%", sm: "40%"}}
     >
       <Text fontSize="1rem" fontWeight="bold">
         {nombre}
@@ -100,12 +99,11 @@ const ProductBuyer = ({ nombre, precio, stock }) => {
       <Text fontSize="1rem" fontWeight="bold" mt="15px">
         Talle: {talle}
       </Text>
-      <Flex widht="100%" mt="15px" height="40px" justify="space-between">
+      <Flex widht="100%" mt="15px" height="40px" justify="space-around" gap='5%'>
         {["S", "M", "L", "XL"].map((item, index) => {
           return (
             <Button
-              height="100%"
-              width="20%"
+              size={{base: 'sm', lg: 'md'}}
               key={index}
               onClick={() => setTalle(item)}
             >
@@ -163,8 +161,8 @@ const ProductDetail = ({ detalles }) => {
   return (
     <Flex
       direction="column"
-      width="100%"
-      p="20px"
+      width={{base: "100%", sm: '60%'}}
+      p={{base: "20px", sm: '0px'}}
       borderRadius="5px"
     >
       <Text m="10px 0" fontSize="2rem">
@@ -221,36 +219,36 @@ const ProductRelation = ({ nombre, categoria }) => {
       <Text height="20%" fontWeight="bold" fontSize="1.5rem" mb='10px'>
         Productos relacionados
       </Text>
-      <Flex height="80%" width="100%" gap="20px">
-        {products.map((item, index) => {
-          if (item.nombre !== nombre) {
+      <Flex height='80%' width="100%" gap="20px" overflowX='scroll'>
+        {products.map((product) => {
+          if (product.nombre !== nombre) {
             return (
               <Flex
-                key={index}
+                key={product.id}
                 boxSizing="border-box"
                 borderRadius="5px"
                 align="center"
                 direction="column"
-                border="1px solid black"
                 p="10px"
-                width="200px"
+                border="1px solid var(--chakra-colors-gray-500)"
+                width="12rem"
                 fontSize="1rem"
               >
-                <h1>{item.nombre}</h1>
+                <h1>{product.nombre}</h1>
                 <Image
                   mt="10px"
                   boxSize="100px"
                   objectFit="cover"
-                  src={item.img}
-                  alt={item.nombre}
+                  src={product.img}
+                  alt={product.nombre}
                 />
                 <Button
                   color="white"
                   bg="rgb(49, 42, 42)"
                   height="30px"
-                  mt="5px"
+                  mt="0.5em"
                 >
-                  <Link to={`/productos/${item.id}`}>Ver detalles</Link>
+                  <Link to={`/productos/${product.id}`}>Ver detalles</Link>
                 </Button>
               </Flex>
             );

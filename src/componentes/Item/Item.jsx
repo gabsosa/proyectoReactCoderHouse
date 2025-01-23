@@ -6,13 +6,14 @@ const Item = ({ nombre, img, precio, id }) => {
     <Flex
       boxSizing="border-box"
       borderRadius="5px"
-      mb="20px"
-      mr="20px"
+      gap='5px'
       align="center"
+      mb='5px'
+      mr='5px'
       direction="column"
       border="1px solid black"
       p="10px"
-      width='200px'
+      width={{base: '150px', sm: '200px'}}
       fontSize='1rem'
     >
       <h1>{nombre}</h1>
